@@ -164,6 +164,7 @@ export default function Technologies() {
           <div style={{ position: 'absolute', inset: 0 }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
+              loading="lazy"
               src={current.image}
               alt={current.title}
               style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
@@ -180,6 +181,7 @@ export default function Technologies() {
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
+                loading="lazy"
                 src={next.image}
                 alt={next.title}
                 style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}

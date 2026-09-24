@@ -72,6 +72,7 @@ export default function CaseStudyLabeledImage({ label, body, src, alt, layout = 
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
+        loading="lazy"
         src={src}
         alt={alt || label || 'Case study image'}
         style={{ maxWidth: '100%', width: 'auto', height: 'auto', display: 'block' }}

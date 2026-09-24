@@ -48,6 +48,7 @@ export default function ParallaxImage({
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
+          loading="lazy"
           src={src}
           alt={alt}
           style={{

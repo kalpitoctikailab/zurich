@@ -127,6 +127,7 @@ export default function PortfolioHero({
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
+            loading="lazy"
             src={imageSrc}
             alt={imageAlt}
             style={{

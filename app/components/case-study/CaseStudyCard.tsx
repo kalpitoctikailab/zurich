@@ -43,6 +43,7 @@ export default function CaseStudyCard({ title, slug, imageSrc, location, index }
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
+              loading="lazy"
               src={imageSrc}
               alt={title}
               style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}

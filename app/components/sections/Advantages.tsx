@@ -221,6 +221,7 @@ export default function Advantages() {
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
+                loading="lazy"
                 src={it.image}
                 alt={it.title}
                 style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}

@@ -112,6 +112,7 @@ export default function CaseStudyIntro({ title, subtitle, body, location, src, a
       <motion.div {...reveal(0.28)} style={{ maxWidth: '100%' }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
+          loading="lazy"
           src={src}
           alt={alt || title}
           style={{ maxWidth: '100%', width: 'auto', height: 'auto', display: 'block', margin: '0 auto' }}

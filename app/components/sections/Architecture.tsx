@@ -32,6 +32,7 @@ function ParallaxImg({ src, alt = '', style, imgStyle }: {
       <motion.div style={{ y, position: 'relative', height: '116%', top: '-8%' }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
+          loading="lazy"
           src={src}
           alt={alt}
           style={{

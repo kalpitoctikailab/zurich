@@ -31,6 +31,7 @@ export default function BlogCard({ post, index }: { post: BlogPost; index: numbe
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
+              loading="lazy"
               src={post.cover}
               alt={post.title}
               style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}

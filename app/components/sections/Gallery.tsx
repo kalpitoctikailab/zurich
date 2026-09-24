@@ -4,12 +4,12 @@ import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useSp
 import SvgIcon from '@/app/components/ui/SvgIcon'
 
 const IMAGES = [
-  { id: 1, src: '/gallery-image/g1.jpg', aspect: '4/8', moveFactor: 0.8 },
-  { id: 2, src: '/gallery-image/g2.jpg', aspect: '3/3', moveFactor: 0.9 },
-  { id: 3, src: '/gallery-image/g3.jpg', aspect: '5/6', moveFactor: 0.6 },
-  { id: 4, src: '/gallery-image/g4.jpg', aspect: '1/1', moveFactor: 1.0 },
-  { id: 5, src: '/gallery-image/g5.jpg', aspect: '5/4', moveFactor: 0.7 },
-  { id: 6, src: '/gallery-image/g6.jpg', aspect: '3/4', moveFactor: 0.8 },
+  { id: 1, src: '/gallery-image/g1.jpg', aspect: '4/8', moveFactor: 0.8, alt: 'Real estate brand identity design by Zurich Graphics' },
+  { id: 2, src: '/gallery-image/g2.jpg', aspect: '3/3', moveFactor: 0.9, alt: 'Property branding project showcasing strategic design' },
+  { id: 3, src: '/gallery-image/g3.jpg', aspect: '5/6', moveFactor: 0.6, alt: 'Brochure design for premium real estate developer' },
+  { id: 4, src: '/gallery-image/g4.jpg', aspect: '1/1', moveFactor: 1.0, alt: 'Real estate advertising campaign by Zurich Graphics' },
+  { id: 5, src: '/gallery-image/g5.jpg', aspect: '5/4', moveFactor: 0.7, alt: 'Brand communication design for luxury property project' },
+  { id: 6, src: '/gallery-image/g6.jpg', aspect: '3/4', moveFactor: 0.8, alt: 'Exhibition stall design for Indian real estate brand' },
 ]
 
 const POSITIONS: Array<{
@@ -43,9 +43,9 @@ export const MOBILE_POSITIONS: typeof POSITIONS = [
 const MAX_OFFSET = 28
 
 function ParallaxItem({
-  src, aspect, pos, moveFactor, mouseX, mouseY,
+  src, aspect, alt, pos, moveFactor, mouseX, mouseY,
 }: {
-  src: string; aspect: string
+  src: string; aspect: string; alt: string
   pos: typeof POSITIONS[number]
   moveFactor: number
   mouseX: ReturnType<typeof useSpring>
@@ -76,7 +76,7 @@ function ParallaxItem({
       <motion.div style={{ y: cursorY }}>
         <div style={{ position: 'relative', width: '100%', aspectRatio: aspect, overflow: 'hidden' }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', opacity: 0.6 }} />
+          <img loading="lazy" src={src} alt={alt} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', opacity: 0.6 }} />
         </div>
       </motion.div>
     </motion.div>
@@ -154,6 +154,7 @@ export default function Gallery() {
               key={img.id}
               src={img.src}
               aspect={img.aspect}
+              alt={img.alt}
               pos={POSITIONS[i]}
               moveFactor={img.moveFactor}
               mouseX={mouseX}
@@ -180,7 +181,7 @@ export default function Gallery() {
             >
               <div style={{ position: 'relative', width: '100%', aspectRatio: img.aspect, overflow: 'hidden' }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={img.src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                <img loading="lazy" src={img.src} alt={img.alt} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
               </div>
             </div>
           ))}
@@ -402,6 +403,7 @@ export default function Gallery() {
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
+                    loading="lazy"
                     src={img.src}
                     alt={`Gallery photo ${i + 1}`}
                     style={{

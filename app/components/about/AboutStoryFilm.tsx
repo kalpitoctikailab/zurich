@@ -120,6 +120,7 @@ export default function AboutStoryFilm() {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
+              loading="lazy"
               src={c.image}
               alt=""
               aria-hidden="true"

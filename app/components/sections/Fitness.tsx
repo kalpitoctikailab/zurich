@@ -185,7 +185,7 @@ export default function Fitness() {
               {mi.type === 'image' && (
                 <div style={{ width: '100%', aspectRatio: '4/3', overflow: 'hidden' }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={mi.src} alt={mi.alt || ''} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                  <img loading="lazy" src={mi.src} alt={mi.alt || ''} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                 </div>
               )}
             </AnimateReveal>
@@ -232,7 +232,7 @@ export default function Fitness() {
             </div>
             <div style={{ flexShrink: 0, width: '38vw', height: '78vh', overflow: 'hidden' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={IMG.i1} alt="Real estate site brochure design by Zurich Graphics" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '80% 20%' }} />
+              <img loading="lazy" src={IMG.i1} alt="Real estate site brochure design by Zurich Graphics" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '80% 20%' }} />
             </div>
             <div style={{ flexShrink: 0, width: '22vw' }}>
               <p style={{ fontSize: '2.5rem', fontWeight: 700, letterSpacing: '0.1em', color: '#000', marginBottom: '1.2rem' }}>
@@ -249,11 +249,11 @@ export default function Fitness() {
           <div style={{ display: 'flex', height: '100vh', alignItems: 'center', padding: '0 4rem', gap: '3rem', flexShrink: 0 }}>
             <div style={{ flexShrink: 0, width: '20vw', height: '65vh', overflow: 'hidden' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={IMG.i2} alt="Real estate company profile design by Zurich Graphics" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <img loading="lazy" src={IMG.i2} alt="Real estate company profile design by Zurich Graphics" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
             <div style={{ flexShrink: 0, width: '22vw', height: '72vh', overflow: 'hidden' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={IMG.i3} alt="Corporate company profile brochure layout by Zurich Graphics" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <img loading="lazy" src={IMG.i3} alt="Corporate company profile brochure layout by Zurich Graphics" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
              
             </div>
             <div style={{ flexShrink: 0, width: '20vw' }}>
@@ -270,11 +270,11 @@ export default function Fitness() {
           <div style={{ display: 'flex', height: '100vh', alignItems: 'center', padding: '0 4rem', gap: '3rem', flexShrink: 0 }}>
             <div style={{ flexShrink: 0, width: '28vw', height: '78vh', overflow: 'hidden' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={IMG.i4} alt="Real estate campaign creative by Zurich Graphics" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '20% 0%' }} />
+              <img loading="lazy" src={IMG.i4} alt="Real estate campaign creative by Zurich Graphics" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '20% 0%' }} />
             </div>
             <div style={{ flexShrink: 0, width: '28vw', height: '75vh', overflow: 'hidden' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={IMG.i5} alt="Real estate marketing campaign design by Zurich Graphics" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <img loading="lazy" src={IMG.i5} alt="Real estate marketing campaign design by Zurich Graphics" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
             <div style={{ flexShrink: 0, width: '18vw' }}>
               <p style={{ fontSize: '2.5rem', fontWeight: 700, letterSpacing: '0.1em', color: '#000', marginBottom: '1.2rem' }}>
@@ -291,11 +291,11 @@ export default function Fitness() {
           <div style={{ display: 'flex', height: '100vh', alignItems: 'center', padding: '0 4rem', gap: '3rem', flexShrink: 0 }}>
             <div style={{ flexShrink: 0, width: '28vw', height: '72vh', overflow: 'hidden' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={IMG.i6} alt="360 degree real estate branding by Zurich Graphics" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <img loading="lazy" src={IMG.i6} alt="360 degree real estate branding by Zurich Graphics" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
             <div style={{ flexShrink: 0, width: '48vw', height: '78vh', overflow: 'hidden' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={IMG.i7} alt="Integrated 360 degree branding touchpoints by Zurich Graphics" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 20%' }} />
+              <img loading="lazy" src={IMG.i7} alt="Integrated 360 degree branding touchpoints by Zurich Graphics" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 20%' }} />
             </div>
             <div style={{ flexShrink: 0, width: '20vw' }}>
               <p style={{ fontSize: '2.5rem', fontWeight: 700, letterSpacing: '0.1em', color: '#000', marginBottom: '1.2rem' }}>
@@ -311,11 +311,11 @@ export default function Fitness() {
           <div style={{ display: 'flex', height: '100vh', alignItems: 'center', padding: '0 4rem', gap: '3rem', flexShrink: 0 }}>
             <div style={{ flexShrink: 0, width: '28vw', height: '72vh', overflow: 'hidden' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={IMG.i8} alt="Real estate print media advertisement by Zurich Graphics" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <img loading="lazy" src={IMG.i8} alt="Real estate print media advertisement by Zurich Graphics" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
             <div style={{ flexShrink: 0, width: '48vw', height: '78vh', overflow: 'hidden' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={IMG.i9} alt="Newspaper and print advertising design by Zurich Graphics" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 20%' }} />
+              <img loading="lazy" src={IMG.i9} alt="Newspaper and print advertising design by Zurich Graphics" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 20%' }} />
             </div>
             <div style={{ flexShrink: 0, width: '20vw' }}>
               <p style={{ fontSize: '2.5rem', fontWeight: 700, letterSpacing: '0.1em', color: '#000', marginBottom: '1.2rem' }}>
@@ -337,7 +337,7 @@ export default function Fitness() {
             </div>
             <div style={{ flexShrink: 0, width: '38vw', height: '78vh', overflow: 'hidden' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={IMG.i10} alt="Real estate exhibition stall design by Zurich Graphics" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '80% 20%' }} />
+              <img loading="lazy" src={IMG.i10} alt="Real estate exhibition stall design by Zurich Graphics" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '80% 20%' }} />
             </div>
             <div style={{ flexShrink: 0, width: '22vw' }}>
               <p style={{ fontSize: 'clamp(1.1rem, 1.1vw, 1.4rem)', lineHeight: 1.65, letterSpacing: '0.04em', color: '#000' }}>

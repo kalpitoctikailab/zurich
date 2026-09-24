@@ -80,6 +80,7 @@ export default function CaseStudyImageRow({ images, actualSize, spaceBelow, gap 
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
+              loading="lazy"
               src={image.src}
               alt={image.alt || `Case study image ${index + 1}`}
               style={{ maxWidth: '100%', width: 'auto', height: 'auto', display: 'block' }}
@@ -121,6 +122,7 @@ export default function CaseStudyImageRow({ images, actualSize, spaceBelow, gap 
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
+            loading="lazy"
             src={image.src}
             alt={image.alt || `Case study image ${index + 1}`}
             onLoad={onLoad(index)}

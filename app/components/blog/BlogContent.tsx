@@ -205,6 +205,7 @@ export default function BlogContent({ blocks }: { blocks: BlogBlock[] }) {
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
+                    loading="lazy"
                     src={block.src}
                     alt={block.alt}
                     style={{ width: '100%', height: 'auto', display: 'block' }}

@@ -60,6 +60,7 @@ function LocationCard({
           <motion.div style={{ y, position: 'absolute', inset: '-12% 0' }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
+              loading="lazy"
               src={image}
               alt={label}
               style={{

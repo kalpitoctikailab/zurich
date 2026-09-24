@@ -1,6 +1,13 @@
+import type { ProjectCategory } from './portfolioData'
+
 export interface FAQItem {
   question: string
   answer: string
+}
+
+export interface ProcessStep {
+  step: string
+  detail: string
 }
 
 export interface ServiceData {
@@ -14,6 +21,9 @@ export interface ServiceData {
   secondaryImage: string
   gallery: [string, string]
   faq: FAQItem[]
+  relatedPortfolioCategories: ProjectCategory[]
+  marqueeKeywords: string[]
+  process: ProcessStep[]
 }
 
 export const SERVICES: ServiceData[] = [
@@ -39,6 +49,14 @@ export const SERVICES: ServiceData[] = [
       { question: 'How Long Does A Positioning Project Take?', answer: 'Typically two to three weeks, from the first site and market read to a locked position and messaging framework your team can brief every vendor from.' },
       { question: 'Do You Work From Research Or Gut Instinct?', answer: 'Both. We start with site visits, competitor audits and buyer conversations, then pressure-test every idea against what actually moves a decision in this category.' },
     ],
+    relatedPortfolioCategories: ['campaign', 'corporate-brochure'],
+    marqueeKeywords: ['Market Research', 'Buyer Profiling', 'Competitive Audit', 'Brand Positioning', 'Messaging Architecture', 'Strategic Brief'],
+    process: [
+      { step: 'Read the Market', detail: 'We start with a forensic audit of your site, competitors and buyer landscape — finding what actually moves decisions in your category.' },
+      { step: 'Find the Edge', detail: 'Every project has something no competitor can honestly claim. We dig until we find it, then test it against what buyers are paying attention to.' },
+      { step: 'Build the Position', detail: 'One clear, ownable idea is shaped into a brand position. Not a tagline. A strategic stake in the ground the whole brand can build from.' },
+      { step: 'Write the Brief', detail: 'The position becomes a messaging framework — architecture your team and every vendor can brief from. Everyone aligned. The brand stays sharp.' },
+    ],
   },
   {
     slug: 'naming-brand-identity',
@@ -61,6 +79,14 @@ export const SERVICES: ServiceData[] = [
     faq: [
       { question: 'Do You Check Names Are Legally Available?', answer: 'We screen every shortlisted name for obvious trademark and local project-name clashes before it goes to you, though final legal clearance sits with your counsel.' },
       { question: 'Can You Redesign An Identity That Already Exists?', answer: 'Yes. We regularly sharpen or fully rebuild identities for projects that launched with a rushed or inconsistent mark.' },
+    ],
+    relatedPortfolioCategories: ['corporate-brochure', 'residential'],
+    marqueeKeywords: ['Name Exploration', 'Legal Screening', 'Wordmark Design', 'Colour System', 'Typography', 'Brand Manual'],
+    process: [
+      { step: 'Explore Wide', detail: 'We start with territories, not names — each exploring a different strategic direction before committing to specific executions.' },
+      { step: 'Pressure-Test', detail: 'Every shortlisted name is stress-tested for meaning, rhythm, recall, cultural resonance and basic trademark availability.' },
+      { step: 'Design the Mark', detail: 'The chosen name gets a visual world — wordmark, type system, palette and brand elements designed to work at every scale.' },
+      { step: 'Write the Rules', detail: 'Everything goes into a brand manual: a single source of truth that keeps the identity consistent across every vendor and touchpoint.' },
     ],
   },
   {
@@ -85,6 +111,14 @@ export const SERVICES: ServiceData[] = [
       { question: 'How Many Pages Is A Typical Project Brochure?', answer: 'Most run 16 to 32 pages depending on the number of unit types and amenities, though we have built single-fold leave-behinds and 60-page collector\'s editions too.' },
       { question: 'Do You Manage The Print Run As Well?', answer: 'Yes, we oversee paper selection, proofing and the press run with our print partners so the final brochure matches what was approved on screen.' },
     ],
+    relatedPortfolioCategories: ['residential', 'commercial', 'mall'],
+    marqueeKeywords: ['Narrative Mapping', 'Layout Design', 'Photography Direction', 'Print Production', 'Paper Selection', 'Finishing'],
+    process: [
+      { step: 'Set the Narrative', detail: 'We map the story arc before a single page is laid out — how the project opens, what it reveals, and how it builds conviction by the back cover.' },
+      { step: 'Design the Layout', detail: 'Typography, imagery, hierarchy and white space work together so every spread moves the story forward and makes the project feel real.' },
+      { step: 'Direct Photography', detail: 'If shooting is needed, we brief and direct it. If content exists, we select and sequence it so every image earns its place on the page.' },
+      { step: 'Produce & Print', detail: 'Paper, finish and format are handled with the same care as the design. What the reader holds should feel as premium as the project it represents.' },
+    ],
   },
   {
     slug: 'campaign-design',
@@ -107,6 +141,14 @@ export const SERVICES: ServiceData[] = [
     faq: [
       { question: 'Do You Also Plan The Media Buy?', answer: 'We design and adapt the campaign across formats; for media planning and buying we work alongside your media agency or can recommend partners we trust.' },
       { question: 'Can A Campaign Be Phased Across Launch Stages?', answer: 'Yes, we typically plan a pre-launch teaser, a launch push and a possession or milestone phase, each with its own key message built on the same idea.' },
+    ],
+    relatedPortfolioCategories: ['campaign'],
+    marqueeKeywords: ['Key Visual', 'Media Adaptation', 'Launch Phasing', 'Sales Collateral', 'Pre-Launch Teaser', 'Campaign Idea'],
+    process: [
+      { step: 'Find the Key Visual', detail: 'One image, one thought — the campaign\'s central visual that every format adapts from. We do not move forward until this is right.' },
+      { step: 'Adapt Across Formats', detail: 'The key visual travels — hoarding, newspaper, digital, sales collateral — adapted for each medium\'s distance, duration and mindset.' },
+      { step: 'Phase the Launch', detail: 'Pre-launch teaser, launch push, possession milestone. Each phase builds on the awareness the last one created.' },
+      { step: 'Measure & Iterate', detail: 'Enquiries, site visits, broker conversations are read back into the creative so every subsequent piece works harder than the last.' },
     ],
   },
   {
@@ -131,6 +173,14 @@ export const SERVICES: ServiceData[] = [
       { question: 'What Counts As A Touchpoint Here?', answer: 'Anything a buyer sees or reads: hoardings, brochures, signage, sales office branding, reels, even the WhatsApp catalogue your sales team shares.' },
       { question: 'Can You Audit A Project That Is Already Mid-Launch?', answer: 'Yes, we run a consistency audit across existing touchpoints, flag the gaps, and bring everything back in line with one brief.' },
     ],
+    relatedPortfolioCategories: ['residential', 'commercial', 'campaign'],
+    marqueeKeywords: ['Consistency Audit', 'Brand Architecture', 'Vendor Brief', 'Touchpoint Systems', 'Site Signage', 'Sales Office Branding'],
+    process: [
+      { step: 'Audit the Gaps', detail: 'We walk through every touchpoint — hoardings, brochures, signage, reels — mapping where the brand breaks down or confuses buyers.' },
+      { step: 'Write One Brief', detail: 'A master brand brief is created. Typography, colour, tone and imagery rules come from a single source so every vendor works from the same page.' },
+      { step: 'Build the System', detail: 'The brand system is built out — from site entrance signage to sales office environment, from digital catalogue to possession kit.' },
+      { step: 'Deploy & Audit', detail: 'As touchpoints go live, we audit for consistency. Nothing reaches buyers out of brand. The system is maintained until the project is handed over.' },
+    ],
   },
   {
     slug: 'reels-digital-communication',
@@ -153,6 +203,14 @@ export const SERVICES: ServiceData[] = [
     faq: [
       { question: 'How Many Reels Do You Produce A Month?', answer: 'Most retainers run 8 to 12 reels a month, mixing project walkthroughs, amenity highlights and quick-answer content, scoped to your launch calendar.' },
       { question: 'Do You Shoot New Footage Or Edit Existing Footage?', answer: 'Both. We can shoot fresh site footage on a schedule, or work from your existing photo and video library when a fast turnaround is needed.' },
+    ],
+    relatedPortfolioCategories: ['campaign', 'residential'],
+    marqueeKeywords: ['Content Calendar', 'Short-Form Video', 'Social Strategy', 'Sound Design', 'Community Management', 'Performance Analytics'],
+    process: [
+      { step: 'Plan the Calendar', detail: 'We map content tied to your launch phases — pre-launch awareness, enquiry conversion, possession celebration — so every post has a strategic purpose.' },
+      { step: 'Create & Produce', detail: 'Scripts, direction, editing and sound are handled in-house. We shoot on-site or edit existing footage, always cutting for sound-off viewing first.' },
+      { step: 'Publish & Manage', detail: 'Content goes live on schedule, captions are written for clarity, and every enquiry or comment receives a timely, on-brand response.' },
+      { step: 'Optimise', detail: 'Performance data feeds back into the next content cycle. Creative that works gets more. What does not gets rethought — fast.' },
     ],
   },
   {
@@ -177,6 +235,14 @@ export const SERVICES: ServiceData[] = [
       { question: 'Do You Handle Drone And 3D Render Footage?', answer: 'Yes, we coordinate drone shoots where permitted and can blend in 3D-render sequences for phases of the project that are not built yet.' },
       { question: 'What Is The Typical Turnaround For A Project Film?', answer: 'A three to five minute film usually takes three to four weeks end to end, from script and recce to the final graded edit.' },
     ],
+    relatedPortfolioCategories: ['corporate-brochure', 'commercial'],
+    marqueeKeywords: ['Script & Storyboard', 'Drone Footage', 'Cinematic Editing', 'Colour Grading', 'Sound Design', 'Multi-Format Delivery'],
+    process: [
+      { step: 'Script & Storyboard', detail: 'Every film begins with a narrative — a single story arc that gives every frame a reason to exist. Alignment before the camera moves.' },
+      { step: 'Shoot & Record', detail: 'On-site, in the studio or in post — drone sequences, walkthroughs, interviews, 3D renders — all coordinated from one production brief.' },
+      { step: 'Edit & Grade', detail: 'The edit finds the film\'s pace. Sound design, music and colour grading give it the personality the project deserves — always purposeful.' },
+      { step: 'Deliver All Cuts', detail: 'Full-length film, sixty-second digital cut, thirty-second social edit. One production run. Every format the project will ever need.' },
+    ],
   },
   {
     slug: 'print-outdoor-media',
@@ -200,6 +266,14 @@ export const SERVICES: ServiceData[] = [
       { question: 'Do You Coordinate With Printing And Hoarding Vendors Directly?', answer: 'Yes, we brief and review proofs with your print and hoarding vendors so the final output matches the approved design, colour included.' },
       { question: 'Can The Same Creative Scale From A Hoarding To A Newspaper Ad?', answer: 'That is exactly how we design it, one key visual and message adapted to each format\'s size, distance and reading time.' },
     ],
+    relatedPortfolioCategories: ['campaign', 'commercial'],
+    marqueeKeywords: ['Hoarding Design', 'Newspaper Ads', 'Site Branding', 'Production Oversight', 'Format Adaptation', 'Vendor Coordination'],
+    process: [
+      { step: 'Concept the Idea', detail: 'The campaign thought becomes a key visual strong enough to work from sixty feet at highway speed. Three seconds to read — or it does not go forward.' },
+      { step: 'Adapt the Formats', detail: 'The key visual is adapted for every format — size, copy and visual hierarchy rethought for each medium\'s distance and available attention.' },
+      { step: 'Proof & Produce', detail: 'We brief and review proofs with your print and hoarding vendors. Colour, scale and finish are verified before production begins.' },
+      { step: 'Install & Confirm', detail: 'For hoardings and site branding, production is supervised so the final install matches the approved design — no stretched logos or wrong colours.' },
+    ],
   },
   {
     slug: 'exhibition-stall-designs',
@@ -222,6 +296,14 @@ export const SERVICES: ServiceData[] = [
     faq: [
       { question: 'Do You Supervise The Stall Build On-Site?', answer: 'Yes, we send a production lead to oversee setup at the venue so the stall matches the approved 3D visual, down to lighting and signage placement.' },
       { question: 'Can You Design For A Recurring Expo Circuit?', answer: 'We can design a modular stall system that adapts across multiple expos and city venues without rebuilding the concept each time.' },
+    ],
+    relatedPortfolioCategories: ['commercial', 'mall'],
+    marqueeKeywords: ['Stall Concept', '3D Visualisation', 'Material Specification', 'Production Management', 'On-Ground Supervision', 'Collateral Design'],
+    process: [
+      { step: 'Concept the Space', detail: 'We start with a clear spatial idea — how the stall reads from thirty feet, how it opens as visitors approach, and what makes them stop and step inside.' },
+      { step: 'Visualise in 3D', detail: 'The concept is built in three dimensions — floor plan, render and material palette — so what is approved is exactly what gets built, with no surprises on the day.' },
+      { step: 'Produce & Fabricate', detail: 'We brief and manage fabrication with partners who understand the standard we expect. Material, lighting and finish are confirmed before build begins.' },
+      { step: 'Set Up & Supervise', detail: 'Our production lead is on-site to oversee setup, ensure the stall matches the approved render and brief the sales team on how to use the space.' },
     ],
   },
 ]

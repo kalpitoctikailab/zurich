@@ -185,6 +185,7 @@ export default function AboutFounder() {
         ) : (
           // eslint-disable-next-line @next/next/no-img-element
           <img
+            loading="lazy"
             src={FOUNDER.image}
             alt={`${FOUNDER.name}, ${FOUNDER.role}`}
             onError={() => setImageFailed(true)}

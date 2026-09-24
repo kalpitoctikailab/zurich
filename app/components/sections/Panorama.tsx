@@ -38,6 +38,7 @@ export default function Panorama() {
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
+            loading="lazy"
             src={BG_IMAGE}
             alt="Zurich Graphics real estate branding studio at work"
             style={{

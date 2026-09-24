@@ -121,6 +121,7 @@ export default function Apartments() {
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
+                loading="lazy"
                 src={activeType.image}
                 alt={`${activeType.label} floor plan`}
                 style={{

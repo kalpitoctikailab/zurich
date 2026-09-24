@@ -68,6 +68,7 @@ export default function PortfolioImageRow({
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
+            loading="lazy"
             src={image.src}
             alt={image.alt || `Portfolio image ${index + 1}`}
             onLoad={onLoad(index)}

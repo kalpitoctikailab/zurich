@@ -58,6 +58,7 @@ export default function CaseStudySplitRow({ main, stacked, overlay, gap = 0.6, s
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
+          loading="lazy"
           src={main.src}
           alt={main.alt || 'Case study image'}
           style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
@@ -76,6 +77,7 @@ export default function CaseStudySplitRow({ main, stacked, overlay, gap = 0.6, s
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
+              loading="lazy"
               src={img.src}
               alt={img.alt || 'Case study image'}
               style={
@@ -110,6 +112,7 @@ export default function CaseStudySplitRow({ main, stacked, overlay, gap = 0.6, s
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
+            loading="lazy"
             src={overlay.src}
             alt={overlay.alt || 'Case study image'}
             style={{ maxWidth: '100%', maxHeight: '100%', width: 'auto', height: 'auto', display: 'block' }}

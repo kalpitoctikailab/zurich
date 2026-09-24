@@ -174,6 +174,7 @@ export default function TurnJSBook({ images }: TurnJSBookProps) {
           $flipbook.append(`
             <div style="background:#fff;overflow:hidden;position:relative;width:100%;height:100%;">
               <img
+                loading="lazy"
                 src="${src}"
                 alt="Page ${index + 1}"
                 draggable="false"

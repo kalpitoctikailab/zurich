@@ -169,6 +169,7 @@ export default function DailySchedule() {
             <motion.div style={{ y: imgY, position: 'absolute', inset: '-14% 0' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
+                loading="lazy"
                 src={item.image}
                 alt={item.time}
                 style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}

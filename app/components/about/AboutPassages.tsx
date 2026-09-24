@@ -201,6 +201,7 @@ export default function AboutPassages() {
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
+                loading="lazy"
                 src={p.image}
                 alt={p.heading}
                 style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
