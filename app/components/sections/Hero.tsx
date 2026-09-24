@@ -6,7 +6,7 @@ import SvgIcon from '@/app/components/ui/SvgIcon'
 import { cdn } from '@/app/lib/cdn'
 
 // Remote image URLs from reference site
-const BG_NIGHT = '/herobanner-image-new.jpeg'
+const BG_NIGHT = '/herobanner-image-new.webp'
 const DECOR_MODEL = '/images/Herobanner Model.png'
 
 export default function Hero() {
@@ -56,6 +56,7 @@ export default function Hero() {
             className="hero-bg-photo"
             src={cdn(BG_NIGHT)}
             alt="Zurich Graphics Real Estate Branding"
+            fetchPriority="high"
             style={{
               position: 'absolute',
               inset: 0,

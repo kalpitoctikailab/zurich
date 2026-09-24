@@ -28,14 +28,14 @@ const CARDS: {
   image: string
   category: ProjectCategory
 }[] = [
-  { label: 'Residential Projects', image: '/images/Residential Projects.jpg', category: 'residential' },
-  { label: 'Commercial Projects', image: '/images/Commercial Projects.jpg', category: 'commercial' },
-  { label: 'Duplex Villa Projects', image: '/images/Duplex - Villa Projects.jpg', category: 'duplex-villa' },
-  { label: 'Mall Projects', image: '/images/Mall Projects.jpg', category: 'mall' },
-  { label: 'Farmhouse Projects', image: '/images/Farmhouse Projects.jpg', category: 'farmhouse' },
-  { label: 'Open Plot Projects', image: '/images/Open Plot Projects.jpg', category: 'open-plot' },
-  { label: 'Industrial Projects', image: '/images/Industrial Projects.jpg', category: 'industrial-park' },
-  { label: 'Corporate Projects', image: '/images/Corporate Projects.jpg', category: 'corporate-brochure' },
+  { label: 'Residential Projects', image: '/images/Residential Projects.webp', category: 'residential' },
+  { label: 'Commercial Projects', image: '/images/Commercial Projects.webp', category: 'commercial' },
+  { label: 'Duplex Villa Projects', image: '/images/Duplex - Villa Projects.webp', category: 'duplex-villa' },
+  { label: 'Mall Projects', image: '/images/Mall Projects.webp', category: 'mall' },
+  { label: 'Farmhouse Projects', image: '/images/Farmhouse Projects.webp', category: 'farmhouse' },
+  { label: 'Open Plot Projects', image: '/images/Open Plot Projects.webp', category: 'open-plot' },
+  { label: 'Industrial Projects', image: '/images/Industrial Projects.webp', category: 'industrial-park' },
+  { label: 'Corporate Projects', image: '/images/Corporate Projects.webp', category: 'corporate-brochure' },
 ]
 
 function LocationCard({

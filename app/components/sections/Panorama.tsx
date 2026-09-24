@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { cdn } from '@/app/lib/cdn'
 
-const BG_IMAGE = "/zurich-bg-image.jpeg";
+const BG_IMAGE = "/zurich-bg-image.webp";
 
 export default function Panorama() {
   const ref = useRef<HTMLElement>(null);
