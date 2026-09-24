@@ -1,4 +1,5 @@
 'use client'
+import { cdn } from '@/app/lib/cdn'
 
 const SOCIAL_LINKS = [
   {
@@ -115,7 +116,7 @@ export default function Footer() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 loading="lazy"
-                src="/zurich-logo-White.svg"
+                src={cdn("/zurich-logo-White.svg")}
                 alt="Zurich Graphics"
                 style={{ height: 'clamp(2.8rem, 6vw, 8rem)', width: 'auto' }}
               />

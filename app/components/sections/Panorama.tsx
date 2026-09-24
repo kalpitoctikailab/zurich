@@ -1,6 +1,7 @@
 "use client";
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { cdn } from '@/app/lib/cdn'
 
 const BG_IMAGE = "/zurich-bg-image.jpeg";
 
@@ -39,7 +40,7 @@ export default function Panorama() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             loading="lazy"
-            src={BG_IMAGE}
+            src={cdn(BG_IMAGE)}
             alt="Zurich Graphics real estate branding studio at work"
             style={{
               width: "100%",

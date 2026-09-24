@@ -1,6 +1,7 @@
 'use client'
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
+import { cdn } from '@/app/lib/cdn'
 
 // Remote style images from reference site
 const IMG = {
@@ -33,7 +34,7 @@ function ParallaxImg({ src, alt = '', style, imgStyle }: {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           loading="lazy"
-          src={src}
+          src={cdn(src)}
           alt={alt}
           style={{
             width: '100%', height: '100%',
@@ -85,7 +86,7 @@ export default function Architecture() {
 
       {/* image-1 — full width, tall */}
       <ParallaxImg
-        src={IMG.image1}
+        src={cdn(IMG.image1)}
         alt="Real estate brand identity and campaign work by Zurich Graphics"
         style={{ width: '100%', aspectRatio: '16/7' }}
       />
@@ -114,10 +115,10 @@ export default function Architecture() {
         gap: 0,
       }}>
         <div style={{ paddingLeft: '25%', paddingBottom: '6rem' }}>
-          <ParallaxImg src={IMG.image2} style={{ aspectRatio: '5/6' }} />
+          <ParallaxImg src={cdn(IMG.image2)} style={{ aspectRatio: '5/6' }} />
         </div>
 
-        <ParallaxImg src={IMG.image3} style={{ aspectRatio: '1/1' }} />
+        <ParallaxImg src={cdn(IMG.image3)} style={{ aspectRatio: '1/1' }} />
       </div> */}
 
       {/* "Premium materials" — right-aligned */}
@@ -158,8 +159,8 @@ export default function Architecture() {
           BLOCK 5 — image-4 + image-5 side by side (square)
       ───────────────────────────────────────────────────────────── */}
       {/* <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0 }}>
-        <ParallaxImg src={IMG.image4} style={{ aspectRatio: '1/1' }} />
-        <ParallaxImg src={IMG.image5} style={{ aspectRatio: '1/1' }} />
+        <ParallaxImg src={cdn(IMG.image4)} style={{ aspectRatio: '1/1' }} />
+        <ParallaxImg src={cdn(IMG.image5)} style={{ aspectRatio: '1/1' }} />
       </div> */}
 
       <style>{`
@@ -225,7 +226,7 @@ function DecorLayers() {
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={layer.src}
+            src={cdn(layer.src)}
             alt={layer.alt}
             loading="lazy"
             style={{

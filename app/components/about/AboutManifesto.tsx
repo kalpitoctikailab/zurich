@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion'
 import SvgIcon from '@/app/components/ui/SvgIcon'
+import { cdn } from '@/app/lib/cdn'
 
 const EASE: [number, number, number, number] = [0.7, 0, 0.3, 1]
 
@@ -279,7 +280,7 @@ function FloatingImage({
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               loading="lazy"
-              src={src}
+              src={cdn(src)}
               alt=""
               aria-hidden="true"
               style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', opacity: 0.85 }}

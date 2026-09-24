@@ -2,6 +2,7 @@
 import { useRef, useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Lenis from 'lenis'
+import { cdn } from '@/app/lib/cdn'
 
 const EASE: [number, number, number, number] = [0.7, 0, 0.3, 1]
 
@@ -202,7 +203,7 @@ export default function AboutPassages() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 loading="lazy"
-                src={p.image}
+                src={cdn(p.image)}
                 alt={p.heading}
                 style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
               />

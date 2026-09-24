@@ -9,6 +9,7 @@ import Marquee from '@/app/components/ui/Marquee'
 import PortfolioCard from '@/app/components/portfolio/PortfolioCard'
 import type { ServiceData } from '@/app/lib/servicesData'
 import type { ProjectData } from '@/app/lib/portfolioData'
+import { cdn } from '@/app/lib/cdn'
 
 /* ─── shared animation helpers ─────────────────────────── */
 function fadeUp(delay = 0) {
@@ -413,7 +414,7 @@ export default function ServiceDetailClient({ service, prevService, nextService,
         <div style={{ position: 'relative', overflow: 'hidden' }}>
           <motion.div style={{ scale: heroImgScale, y: heroImgY, position: 'absolute', inset: 0, willChange: 'transform' }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img loading="lazy" src={service.image} alt={service.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+            <img loading="lazy" src={cdn(service.image)} alt={service.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
           </motion.div>
           <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.1) 40%, transparent 100%)', pointerEvents: 'none' }} />
           <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.65) 100%)', pointerEvents: 'none' }} />
@@ -484,7 +485,7 @@ export default function ServiceDetailClient({ service, prevService, nextService,
                   </motion.p>
                   {service.secondaryImage && (
                     <motion.div {...fadeIn(0.15)} style={{ borderRadius: '16px', overflow: 'hidden', aspectRatio: '16/10', border: '1px solid rgba(255,255,255,0.06)' }}>
-                      <ParallaxImage src={service.secondaryImage} alt="" strength={10} style={{ height: '100%' }} />
+                      <ParallaxImage src={cdn(service.secondaryImage)} alt="" strength={10} style={{ height: '100%' }} />
                     </motion.div>
                   )}
                 </div>
@@ -591,10 +592,10 @@ export default function ServiceDetailClient({ service, prevService, nextService,
 
           <div className="svc-gallery-grid" style={{ display: 'grid', gridTemplateColumns: '1.55fr 1fr', gap: '1.4rem' }}>
             <motion.div {...fadeIn()} style={{ borderRadius: '16px', overflow: 'hidden', minHeight: 560, border: '1px solid rgba(255,255,255,0.05)' }}>
-              <ParallaxImage src={service.gallery[0]} alt="Visual 1" strength={10} style={{ height: '100%' }} />
+              <ParallaxImage src={cdn(service.gallery[0])} alt="Visual 1" strength={10} style={{ height: '100%' }} />
             </motion.div>
             <motion.div {...fadeIn(0.12)} style={{ borderRadius: '16px', overflow: 'hidden', minHeight: 560, border: '1px solid rgba(255,255,255,0.05)' }}>
-              <ParallaxImage src={service.gallery[1]} alt="Visual 2" strength={10} style={{ height: '100%' }} />
+              <ParallaxImage src={cdn(service.gallery[1])} alt="Visual 2" strength={10} style={{ height: '100%' }} />
             </motion.div>
           </div>
         </div>

@@ -3,6 +3,7 @@ import { useState, useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { APARTMENT_TYPES } from '@/app/lib/data'
 import ParallaxImage from '@/app/components/ui/ParallaxImage'
+import { cdn } from '@/app/lib/cdn'
 
 export default function Apartments() {
   const [activeTab, setActiveTab] = useState(0)
@@ -122,7 +123,7 @@ export default function Apartments() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 loading="lazy"
-                src={activeType.image}
+                src={cdn(activeType.image)}
                 alt={`${activeType.label} floor plan`}
                 style={{
                   width: '100%',
@@ -162,7 +163,7 @@ export default function Apartments() {
           }}
         >
           <ParallaxImage
-            src="/assets/images/apartments/hero.webp"
+            src={cdn("/assets/images/apartments/hero.webp")}
             alt="Splendid Apartments"
             strength={10}
             style={{ position: 'absolute', inset: 0 }}

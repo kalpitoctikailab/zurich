@@ -3,6 +3,7 @@ import { useState } from 'react'
 import SplitText from '@/app/components/ui/SplitText'
 import AnimateReveal from '@/app/components/ui/AnimateReveal'
 import Marquee from '@/app/components/ui/Marquee'
+import { cdn } from '@/app/lib/cdn'
 
 const FOUNDER = {
   name: 'Pritesh Gandhi',
@@ -186,7 +187,7 @@ export default function AboutFounder() {
           // eslint-disable-next-line @next/next/no-img-element
           <img
             loading="lazy"
-            src={FOUNDER.image}
+            src={cdn(FOUNDER.image)}
             alt={`${FOUNDER.name}, ${FOUNDER.role}`}
             onError={() => setImageFailed(true)}
             style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}

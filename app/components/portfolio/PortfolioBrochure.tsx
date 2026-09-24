@@ -1,6 +1,7 @@
 'use client'
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
+import { cdn } from '@/app/lib/cdn'
 
 interface PortfolioBrochureProps {
   imageSrc: string
@@ -46,7 +47,7 @@ export default function PortfolioBrochure({
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           loading="lazy"
-          src={imageSrc}
+          src={cdn(imageSrc)}
           alt={imageAlt}
           style={{
             width: '100%',

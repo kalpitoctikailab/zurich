@@ -1,6 +1,7 @@
 'use client'
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
+import { cdn } from '@/app/lib/cdn'
 
 interface CaseStudyLabeledImageProps {
   /** omit to render just the image, no heading */
@@ -73,7 +74,7 @@ export default function CaseStudyLabeledImage({ label, body, src, alt, layout = 
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         loading="lazy"
-        src={src}
+        src={cdn(src)}
         alt={alt || label || 'Case study image'}
         style={{ maxWidth: '100%', width: 'auto', height: 'auto', display: 'block' }}
       />

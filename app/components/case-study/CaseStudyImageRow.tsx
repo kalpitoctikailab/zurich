@@ -1,6 +1,7 @@
 'use client'
 import { useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
+import { cdn } from '@/app/lib/cdn'
 
 interface RowImage {
   src: string
@@ -81,7 +82,7 @@ export default function CaseStudyImageRow({ images, actualSize, spaceBelow, gap 
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               loading="lazy"
-              src={image.src}
+              src={cdn(image.src)}
               alt={image.alt || `Case study image ${index + 1}`}
               style={{ maxWidth: '100%', width: 'auto', height: 'auto', display: 'block' }}
             />
@@ -123,7 +124,7 @@ export default function CaseStudyImageRow({ images, actualSize, spaceBelow, gap 
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             loading="lazy"
-            src={image.src}
+            src={cdn(image.src)}
             alt={image.alt || `Case study image ${index + 1}`}
             onLoad={onLoad(index)}
             style={{

@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Lenis from 'lenis'
 import { TECHNOLOGY_ITEMS } from '@/app/lib/data'
+import { cdn } from '@/app/lib/cdn'
 
 const TOTAL = TECHNOLOGY_ITEMS.length
 const STEPS = Math.max(1, TOTAL - 1) // transitions between consecutive items
@@ -165,7 +166,7 @@ export default function Technologies() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               loading="lazy"
-              src={current.image}
+              src={cdn(current.image)}
               alt={current.title}
               style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
             />
@@ -182,7 +183,7 @@ export default function Technologies() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 loading="lazy"
-                src={next.image}
+                src={cdn(next.image)}
                 alt={next.title}
                 style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
               />

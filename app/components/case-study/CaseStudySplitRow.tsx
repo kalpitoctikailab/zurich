@@ -1,6 +1,7 @@
 'use client'
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
+import { cdn } from '@/app/lib/cdn'
 
 interface SplitImage {
   src: string
@@ -59,7 +60,7 @@ export default function CaseStudySplitRow({ main, stacked, overlay, gap = 0.6, s
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           loading="lazy"
-          src={main.src}
+          src={cdn(main.src)}
           alt={main.alt || 'Case study image'}
           style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
         />
@@ -78,7 +79,7 @@ export default function CaseStudySplitRow({ main, stacked, overlay, gap = 0.6, s
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               loading="lazy"
-              src={img.src}
+              src={cdn(img.src)}
               alt={img.alt || 'Case study image'}
               style={
                 stackedFit === 'none'
@@ -113,7 +114,7 @@ export default function CaseStudySplitRow({ main, stacked, overlay, gap = 0.6, s
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             loading="lazy"
-            src={overlay.src}
+            src={cdn(overlay.src)}
             alt={overlay.alt || 'Case study image'}
             style={{ maxWidth: '100%', maxHeight: '100%', width: 'auto', height: 'auto', display: 'block' }}
           />

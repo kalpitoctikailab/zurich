@@ -6,6 +6,7 @@ import 'keen-slider/keen-slider.min.css'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import TurnJSBook from '@/app/components/ui/TurnJSBook'
 import type { ProjectCategory } from '@/app/lib/portfolioData'
+import { cdn } from '@/app/lib/cdn'
 
 const EXPERTISE = [
   {
@@ -61,7 +62,7 @@ function LocationCard({
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               loading="lazy"
-              src={image}
+              src={cdn(image)}
               alt={label}
               style={{
                 position: 'absolute', inset: 0,

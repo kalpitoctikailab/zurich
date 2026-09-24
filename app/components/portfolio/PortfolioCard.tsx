@@ -2,6 +2,7 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import Link from 'next/link'
+import { cdn } from '@/app/lib/cdn'
 
 interface PortfolioCardProps {
   title: string
@@ -66,7 +67,7 @@ export default function PortfolioCard({
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               loading="lazy"
-              src={imageSrc}
+              src={cdn(imageSrc)}
               alt={title}
               style={{
                 width: '100%',

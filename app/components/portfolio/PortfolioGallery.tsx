@@ -1,6 +1,7 @@
 'use client'
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
+import { cdn } from '@/app/lib/cdn'
 
 interface GalleryImage {
   src: string
@@ -51,7 +52,7 @@ export default function PortfolioGallery({ images }: PortfolioGalleryProps) {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               loading="lazy"
-              src={image.src}
+              src={cdn(image.src)}
               alt={image.alt || `Portfolio image ${index + 1}`}
               style={{
                 width: '100%',

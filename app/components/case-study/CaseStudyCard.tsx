@@ -2,6 +2,7 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import Link from 'next/link'
+import { cdn } from '@/app/lib/cdn'
 
 interface CaseStudyCardProps {
   title: string
@@ -44,7 +45,7 @@ export default function CaseStudyCard({ title, slug, imageSrc, location, index }
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               loading="lazy"
-              src={imageSrc}
+              src={cdn(imageSrc)}
               alt={title}
               style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
             />

@@ -2,6 +2,7 @@
 import { useState, useRef } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import SvgIcon from '@/app/components/ui/SvgIcon'
+import { cdn } from '@/app/lib/cdn'
 
 // hour is 0–11 on a 12-hour face (0 stands in for 12, so we never store the literal 12)
 const ITEMS = [
@@ -170,7 +171,7 @@ export default function DailySchedule() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 loading="lazy"
-                src={item.image}
+                src={cdn(item.image)}
                 alt={item.time}
                 style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
               />

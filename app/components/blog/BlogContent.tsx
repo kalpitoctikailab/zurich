@@ -1,4 +1,5 @@
 import type { BlogBlock } from '@/app/lib/blogData'
+import { cdn } from '@/app/lib/cdn'
 
 const bodyText: React.CSSProperties = {
   fontSize: 'clamp(1.5rem, 1.3vw, 1.75rem)',
@@ -206,7 +207,7 @@ export default function BlogContent({ blocks }: { blocks: BlogBlock[] }) {
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     loading="lazy"
-                    src={block.src}
+                    src={cdn(block.src)}
                     alt={block.alt}
                     style={{ width: '100%', height: 'auto', display: 'block' }}
                   />

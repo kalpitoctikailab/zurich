@@ -1,5 +1,6 @@
 'use client'
 import { useRef, useState } from 'react'
+import { cdn } from '@/app/lib/cdn'
 import {
   motion,
   AnimatePresence,
@@ -121,7 +122,7 @@ export default function AboutStoryFilm() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               loading="lazy"
-              src={c.image}
+              src={cdn(c.image)}
               alt=""
               aria-hidden="true"
               style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}

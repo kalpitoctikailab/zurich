@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import AnimateReveal from '@/app/components/ui/AnimateReveal'
+import { cdn } from '@/app/lib/cdn'
 
 const EASE = 'cubic-bezier(.7,0,.3,1)'
 
@@ -125,7 +126,7 @@ export default function AboutCraft() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   loading="lazy"
-                  src={craft.image}
+                  src={cdn(craft.image)}
                   alt={craft.title}
                   style={{
                     position: 'absolute',

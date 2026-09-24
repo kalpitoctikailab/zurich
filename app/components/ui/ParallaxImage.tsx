@@ -1,6 +1,7 @@
 'use client'
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
+import { cdn } from '@/app/lib/cdn'
 
 type ParallaxImageProps = {
   src: string
@@ -49,7 +50,7 @@ export default function ParallaxImage({
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           loading="lazy"
-          src={src}
+          src={cdn(src)}
           alt={alt}
           style={{
             width: '100%',

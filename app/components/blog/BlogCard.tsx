@@ -3,6 +3,7 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import Link from 'next/link'
 import type { BlogPost } from '@/app/lib/blogData'
+import { cdn } from '@/app/lib/cdn'
 
 export default function BlogCard({ post, index }: { post: BlogPost; index: number }) {
   const ref = useRef<HTMLDivElement>(null)
@@ -32,7 +33,7 @@ export default function BlogCard({ post, index }: { post: BlogPost; index: numbe
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               loading="lazy"
-              src={post.cover}
+              src={cdn(post.cover)}
               alt={post.title}
               style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
             />

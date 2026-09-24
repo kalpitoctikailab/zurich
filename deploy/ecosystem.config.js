@@ -8,6 +8,7 @@ module.exports = {
       env: {
         NODE_ENV: 'production',
         BROCHURE_CDN_URL: 'https://dn2k1twc7nphc.cloudfront.net/portfolio-brochures',
+        NEXT_PUBLIC_CDN_URL: 'https://dn2k1twc7nphc.cloudfront.net',
       },
     },
   ],

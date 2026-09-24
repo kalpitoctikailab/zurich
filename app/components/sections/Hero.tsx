@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import SvgIcon from '@/app/components/ui/SvgIcon'
+import { cdn } from '@/app/lib/cdn'
 
 // Remote image URLs from reference site
 const BG_NIGHT = '/herobanner-image-new.jpeg'
@@ -53,7 +54,7 @@ export default function Hero() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             className="hero-bg-photo"
-            src={BG_NIGHT}
+            src={cdn(BG_NIGHT)}
             alt="Zurich Graphics Real Estate Branding"
             style={{
               position: 'absolute',
@@ -79,7 +80,7 @@ export default function Hero() {
         <motion.div style={{ scale: imgScale, transformOrigin: 'bottom center' }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           {/* <img
-            src={DECOR_MODEL}
+            src={cdn(DECOR_MODEL)}
             alt=""
             style={{ width: '100%', height: 'auto', display: 'block' }}
           /> */}
@@ -116,7 +117,7 @@ export default function Hero() {
         </motion.h1>
 
         <motion.img
-          src="/zurich-logo-White.svg"
+          src={cdn("/zurich-logo-White.svg")}
           alt="Zurich Graphics"
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -158,7 +159,7 @@ export default function Hero() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               className="hero-wordmark"
-              src="/images/zurich-text.svg"
+              src={cdn("/images/zurich-text.svg")}
               alt="Zurich"
               style={{
                 display: 'block',

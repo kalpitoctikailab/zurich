@@ -2,6 +2,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion'
 import SvgIcon from '@/app/components/ui/SvgIcon'
+import { cdn } from '@/app/lib/cdn'
 
 const IMAGES = [
   { id: 1, src: '/gallery-image/g1.jpg', aspect: '4/8', moveFactor: 0.8, alt: 'Real estate brand identity design by Zurich Graphics' },
@@ -76,7 +77,7 @@ function ParallaxItem({
       <motion.div style={{ y: cursorY }}>
         <div style={{ position: 'relative', width: '100%', aspectRatio: aspect, overflow: 'hidden' }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img loading="lazy" src={src} alt={alt} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', opacity: 0.6 }} />
+          <img loading="lazy" src={cdn(src)} alt={alt} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', opacity: 0.6 }} />
         </div>
       </motion.div>
     </motion.div>
@@ -152,7 +153,7 @@ export default function Gallery() {
           {IMAGES.map((img, i) => (
             <ParallaxItem
               key={img.id}
-              src={img.src}
+              src={cdn(img.src)}
               aspect={img.aspect}
               alt={img.alt}
               pos={POSITIONS[i]}
@@ -181,7 +182,7 @@ export default function Gallery() {
             >
               <div style={{ position: 'relative', width: '100%', aspectRatio: img.aspect, overflow: 'hidden' }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img loading="lazy" src={img.src} alt={img.alt} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                <img loading="lazy" src={cdn(img.src)} alt={img.alt} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
               </div>
             </div>
           ))}
@@ -404,7 +405,7 @@ export default function Gallery() {
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     loading="lazy"
-                    src={img.src}
+                    src={cdn(img.src)}
                     alt={`Gallery photo ${i + 1}`}
                     style={{
                       width: '100%',

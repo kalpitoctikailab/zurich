@@ -1,6 +1,7 @@
 'use client'
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
+import { cdn } from '@/app/lib/cdn'
 
 interface CaseStudyIntroProps {
   title: string
@@ -113,7 +114,7 @@ export default function CaseStudyIntro({ title, subtitle, body, location, src, a
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           loading="lazy"
-          src={src}
+          src={cdn(src)}
           alt={alt || title}
           style={{ maxWidth: '100%', width: 'auto', height: 'auto', display: 'block', margin: '0 auto' }}
         />
