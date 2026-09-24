@@ -31,7 +31,7 @@ if command -v aws &>/dev/null; then
   # Root-level images (hero banners, blog covers)
   aws s3 sync public/ "s3://$STATIC_BUCKET/" \
     --exclude "*" \
-    --include "*.jpg" --include "*.jpeg" --include "*.png" --include "*.webp" \
+    --include "*.jpg" --include "*.jpeg" --include "*.png" --include "*.webp" --include "*.svg" \
     --cache-control "public, max-age=2592000"
 
   echo "All assets synced to S3."
