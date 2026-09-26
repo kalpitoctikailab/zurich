@@ -683,7 +683,7 @@ export default function ServiceDetailClient({ service, prevService, nextService,
               gap: 'clamp(4rem, 7vw, 10rem)',
               alignItems: 'start', paddingTop: '7rem',
             }}>
-              <div style={{ position: 'sticky', top: '11rem' }}>
+              <div className="svc-faq-label" style={{ position: 'sticky', top: '11rem' }}>
                 <motion.span {...fadeUp()} style={{ display: 'block', fontSize: '1.1rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.28)', marginBottom: '2rem' }}>
                   Questions
                 </motion.span>
@@ -791,6 +791,7 @@ export default function ServiceDetailClient({ service, prevService, nextService,
         @media (max-width: 900px) {
           .svc-faq { padding: 0 2.4rem 8rem !important; }
           .svc-faq-grid { grid-template-columns: 1fr !important; }
+          .svc-faq-label { position: static !important; top: auto !important; }
         }
         /* Process */
         @media (max-width: 960px) {
