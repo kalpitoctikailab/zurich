@@ -91,7 +91,12 @@ const STEP_ICONS = [
 /* ─── Process section — horizontal flow, icon-driven ─────── */
 function ProcessSection({ steps }: { steps: ServiceData['process'] }) {
   const sectionRef = useRef<HTMLElement>(null)
-  const isInView = useInView(sectionRef, { once: true, margin: '-15% 0px' })
+  // Trigger the wave/icon animation off step 1 itself, not the section
+  // (which includes the "Our Process" heading above it) — the heading was
+  // scrolling into view well before the wave did, so the animation looked
+  // like it had already half-played by the time you saw it.
+  const firstIconRef = useRef<HTMLDivElement>(null)
+  const isInView = useInView(firstIconRef, { once: true, margin: '0px 0px -10% 0px' })
   const n = steps.length
   // Compact wave — text lives outside wave, so VH can be small
   const VW = 1200, VH = 280
@@ -220,6 +225,7 @@ function ProcessSection({ steps }: { steps: ServiceData['process'] }) {
           {iconPts.map((pos, i) => (
             <div
               key={i}
+              ref={i === 0 ? firstIconRef : undefined}
               style={{
                 position: 'absolute',
                 left: `${(pos.x / VW) * 100}%`,
@@ -359,141 +365,85 @@ export default function ServiceDetailClient({ service, prevService, nextService,
     <main style={{ background: '#000', color: '#fff' }}>
 
       {/* ══════════════════════════════════════════
-          01 · HERO — 45/55 split, parallax
+          01 · HERO — full-bleed image, bottom-anchored
+          content. Matches the /services listing hero
+          (this page's real sibling) and the fixed
+          pill "Back" button used on the portfolio
+          detail hero — same family, not a one-off.
       ══════════════════════════════════════════ */}
       <section
         ref={heroRef}
-        className="svc-hero"
-        style={{
-          position: 'relative',
-          height: '100svh',
-          minHeight: 640,
-          display: 'grid',
-          gridTemplateColumns: '45% 55%',
-          overflow: 'hidden',
-          background: '#000',
-        }}
+        style={{ position: 'relative', height: '100svh', minHeight: 640, overflow: 'hidden', background: '#000' }}
       >
-        {/* Left */}
-        <div
-          className="svc-hero-left"
+        {/* Back — mirrors PortfolioHero's fixed pill button */}
+        <Link
+          href="/services"
+          className="svc-hero-back"
           style={{
-            position: 'relative',
-            zIndex: 2,
-            background: '#000',
-            display: 'flex',
-            flexDirection: 'column',
-            padding: '0 5.2rem 5.6rem',
-            paddingTop: 'calc(88px + 3.2rem)',
-            overflow: 'hidden',
+            position: 'fixed', top: '2.4rem', left: '4rem', zIndex: 101,
+            display: 'flex', alignItems: 'center', gap: '0.8rem',
+            padding: '1rem 2rem',
+            border: '1px solid rgba(255,255,255,0.35)',
+            borderRadius: '999px',
+            background: 'rgba(0,0,0,0.25)',
+            backdropFilter: 'blur(4px)',
+            color: '#fff',
+            fontSize: '1.2rem',
+            letterSpacing: '0.04em',
+            textDecoration: 'none',
           }}
         >
-          <motion.div style={{ y: heroTextY, opacity: heroOpacity, position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', height: '100%' }}>
-            {/* Back link */}
-            <motion.div
-              initial={{ opacity: 0, y: -14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.7, 0, 0.3, 1], delay: 0.15 }}
-            >
-              <Link href="/services" style={{
-                display: 'inline-flex', alignItems: 'center', gap: '0.8rem',
-                fontSize: '1.25rem', letterSpacing: '0.06em',
-                color: 'rgba(255,255,255,0.38)', textDecoration: 'none',
-              }}>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <line x1="19" y1="12" x2="5" y2="12" />
-                  <polyline points="12 19 5 12 12 5" />
-                </svg>
-                All Services
-              </Link>
-            </motion.div>
+          <svg width="14" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <line x1="19" y1="12" x2="5" y2="12" />
+            <polyline points="12 19 5 12 12 5" />
+          </svg>
+          Back
+        </Link>
 
-            {/* Title + tagline — one typographic statement, no scaffolding above it */}
-            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-              <SplitText
-                as="h1"
-                mode="lines"
-                text={service.title}
-                style={{
-                  fontSize: 'clamp(3.8rem, 5.2vw, 7.6rem)',
-                  fontWeight: 600, lineHeight: 0.98,
-                  letterSpacing: '-0.03em', color: '#fff',
-                }}
-              />
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, ease: [0.7, 0, 0.3, 1], delay: 0.5 }}
-                style={{
-                  fontSize: 'clamp(1.6rem, 1.6vw, 2.1rem)',
-                  lineHeight: 1.5, color: 'rgba(255,255,255,0.42)',
-                  margin: '2.4rem 0 0', fontWeight: 600, maxWidth: 420,
-                }}
-              >
-                {service.tagline}
-              </motion.p>
-            </div>
-
-            {/* What's covered — real scope, not a decorative numeral */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, ease: [0.7, 0, 0.3, 1], delay: 0.7 }}
-              style={{ display: 'flex', flexWrap: 'wrap', gap: '0.9rem' }}
-            >
-              {service.highlights.slice(0, 3).map((h, i) => (
-                <span key={i} style={{
-                  padding: '0.9rem 1.6rem',
-                  border: '1px solid rgba(255,255,255,0.16)',
-                  borderRadius: '999px',
-                  fontSize: '1.2rem', lineHeight: 1.3,
-                  color: 'rgba(255,255,255,0.62)',
-                  whiteSpace: 'nowrap',
-                }}>
-                  {h}
-                </span>
-              ))}
-            </motion.div>
-          </motion.div>
-        </div>
-
-        {/* Right: image */}
-        <motion.div
-          initial={{ clipPath: 'inset(0 0 100% 0)' }}
-          animate={{ clipPath: 'inset(0 0 0% 0)' }}
-          transition={{ duration: 1.2, ease: [0.7, 0, 0.3, 1], delay: 0.1 }}
-          style={{ position: 'relative', overflow: 'hidden' }}
-        >
-          <motion.div style={{ scale: heroImgScale, y: heroImgY, position: 'absolute', inset: 0, willChange: 'transform' }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={cdn(service.image)} alt={service.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-          </motion.div>
-          <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.1) 40%, transparent 100%)', pointerEvents: 'none' }} />
-          <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.65) 100%)', pointerEvents: 'none' }} />
+        {/* Image */}
+        <motion.div style={{ scale: heroImgScale, y: heroImgY, position: 'absolute', inset: 0, willChange: 'transform' }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={cdn(service.image)} alt={service.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
         </motion.div>
-
-        {/* Seam line */}
         <div aria-hidden="true" style={{
-          position: 'absolute', top: 0, bottom: 0, left: '45%', width: '1px',
-          background: 'linear-gradient(180deg, transparent, rgba(255,255,255,0.1) 25%, rgba(255,255,255,0.1) 75%, transparent)',
-          zIndex: 3, pointerEvents: 'none',
+          position: 'absolute', inset: 0,
+          background: 'linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.35) 45%, rgba(0,0,0,0.92) 100%)',
         }} />
 
-        {/* Scroll hint */}
+        {/* Content — bottom-anchored, same block as the services-index hero */}
         <motion.div
-          initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-          transition={{ delay: 1.3, duration: 0.8 }}
-          className="svc-scroll-hint"
-          style={{ position: 'absolute', bottom: '4rem', right: '4rem', zIndex: 4, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}
+          className="svc-hero-content"
+          style={{
+            opacity: heroOpacity, y: heroTextY,
+            position: 'relative', maxWidth: 1400, margin: '0 auto', height: '100%',
+            display: 'flex', flexDirection: 'column', justifyContent: 'flex-end',
+            padding: '13rem 4rem 6rem', zIndex: 2,
+          }}
         >
-          <span style={{ fontSize: '1.1rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.28)', writingMode: 'vertical-rl' }}>Scroll</span>
-          <span style={{ position: 'relative', display: 'block', width: '1px', height: 40, background: 'rgba(255,255,255,0.14)', overflow: 'hidden' }}>
-            <motion.span
-              animate={{ y: ['-100%', '100%'] }}
-              transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
-              style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '50%', background: 'rgba(255,255,255,0.7)' }}
-            />
-          </span>
+          <SplitText
+            as="h1"
+            mode="lines"
+            text={service.title}
+            style={{
+              fontSize: 'clamp(3.6rem, 6.6vw, 8.8rem)',
+              fontWeight: 600, color: '#fff',
+              lineHeight: 1.05, letterSpacing: '0.01em',
+              maxWidth: 1150, margin: 0,
+            }}
+          />
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: [0.7, 0, 0.3, 1], delay: 0.5 }}
+            style={{
+              fontSize: 'clamp(1.4rem, 1.4vw, 1.7rem)',
+              lineHeight: 1.7, letterSpacing: '0.02em',
+              color: 'rgba(255,255,255,0.65)',
+              maxWidth: 620, margin: '2.8rem 0 0',
+            }}
+          >
+            {service.tagline}
+          </motion.p>
         </motion.div>
       </section>
 
@@ -805,10 +755,11 @@ export default function ServiceDetailClient({ service, prevService, nextService,
 
       <style>{`
         /* Hero */
+        @media (max-width: 640px) {
+          .svc-hero-back { top: 1.6rem !important; left: 2rem !important; padding: 0.8rem 1.6rem !important; }
+        }
         @media (max-width: 768px) {
-          .svc-hero { grid-template-columns: 1fr !important; grid-template-rows: 1fr 38vh !important; }
-          .svc-hero-left { padding: 2.4rem !important; padding-top: calc(80px + 2rem) !important; }
-          .svc-scroll-hint { display: none !important; }
+          .svc-hero-content { padding: 9rem 2rem 4rem !important; }
         }
         /* Idea */
         @media (max-width: 960px) {
