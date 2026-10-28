@@ -1,84 +1,146 @@
-'use client'
-import { useEffect, useRef, useState } from 'react'
-import Image from 'next/image'
-import { motion, useScroll, useTransform } from 'framer-motion'
-import SvgIcon from '@/app/components/ui/SvgIcon'
-import { cdn } from '@/app/lib/cdn'
+"use client";
+import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import { motion, useScroll, useTransform } from "framer-motion";
+import SvgIcon from "@/app/components/ui/SvgIcon";
+import { cdn } from "@/app/lib/cdn";
 
 // Remote image URLs from reference site
-const BG_NIGHT = '/herobanner-image-new.webp'
-const DECOR_MODEL = '/images/Herobanner Model.png'
+const BG_NIGHT = "/herobanner-image-new.webp";
+// Festive campaign slider. Set FESTIVE_BANNER to false after the festival to restore the single image.
+const FESTIVE_BANNER = true;
+const FESTIVE_SLIDES = [1, 2, 3, 4, 5].map(
+  (n) => `/festive-hero/desktop-0${n}.webp`,
+);
+const FESTIVE_INTERVAL_MS = 3000;
+const DECOR_MODEL = "/images/Herobanner Model.png";
 
 export default function Hero() {
-  const ref = useRef<HTMLElement>(null)
-  const [mounted, setMounted] = useState(false)
+  const ref = useRef<HTMLElement>(null);
+  const [mounted, setMounted] = useState(false);
 
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
-  const logoY = useTransform(scrollYProgress, [0, 1], ['0%', '-25%'])
-  const imgScale = useTransform(scrollYProgress, [0, 1], [1.0, 1.08])
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+  const logoY = useTransform(scrollYProgress, [0, 1], ["0%", "-25%"]);
+  const imgScale = useTransform(scrollYProgress, [0, 1], [1.0, 1.08]);
 
-  useEffect(() => { setMounted(true) }, [])
+  const [slide, setSlide] = useState(0);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!FESTIVE_BANNER) return;
+    const id = setInterval(
+      () => setSlide((i) => (i + 1) % FESTIVE_SLIDES.length),
+      FESTIVE_INTERVAL_MS,
+    );
+    return () => clearInterval(id);
+  }, []);
 
   return (
     <section
       ref={ref}
       id="top"
+      className="hero-section"
       style={{
-        position: 'relative',
-        width: '100%',
-        height: '100svh',
+        position: "relative",
+        width: "100%",
+        height: "100svh",
         minHeight: 600,
-        overflow: 'hidden',
-        background: '#000',
+        overflow: "hidden",
+        background: "#000",
+        // festive banners are 4:3 — image box is as wide as a full-height 4:3 frame (capped), black strip takes the rest
+        ["--hero-img-w" as string]: FESTIVE_BANNER
+          ? "min(133.333svh, 72%)"
+          : "67%",
       }}
     >
       {/* ── LEFT solid black strip ── */}
-      <div className="hero-left-strip" style={{
-        position: 'absolute',
-        left: 0, top: 0, bottom: 0,
-        width: '33%',
-        background: '#000',
-        zIndex: 2,
-      }} />
+      <div
+        className="hero-left-strip"
+        style={{
+          position: "absolute",
+          left: 0,
+          top: 0,
+          bottom: 0,
+          width: "calc(100% - var(--hero-img-w))",
+          background: "#000",
+          zIndex: 2,
+        }}
+      />
 
       {/* ── RIGHT — night building photo from reference ── */}
-      <div className="hero-image-wrap" style={{
-        position: 'absolute',
-        left: '33%',
-        right: 0,
-        top: 0,
-        bottom: 0,
-        zIndex: 1,
-      }}>
-        <motion.div style={{ scale: imgScale, position: 'absolute', inset: 0 }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            className="hero-bg-photo"
-            src={cdn(BG_NIGHT)}
-            alt="Zurich Graphics Real Estate Branding"
-            fetchPriority="high"
-            style={{
-              position: 'absolute',
-              inset: 0,
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              objectPosition: 'left center',
-            }}
-          />
+      <div
+        className="hero-image-wrap"
+        style={{
+          position: "absolute",
+          width: "var(--hero-img-w)",
+          right: 0,
+          top: 0,
+          bottom: 0,
+          zIndex: 1,
+        }}
+      >
+        <motion.div style={{ scale: imgScale, position: "absolute", inset: 0 }}>
+          {FESTIVE_BANNER ? (
+            FESTIVE_SLIDES.map((src, i) => (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                key={src}
+                className="hero-bg-photo"
+                src={cdn(src)}
+                alt="Zurich Graphics Festive Offer"
+                fetchPriority={i === 0 ? "high" : "auto"}
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  objectPosition: "center center",
+                  opacity: i === slide ? 1 : 0,
+                  transition: "opacity 0.9s cubic-bezier(.7,0,.3,1)",
+                }}
+              />
+            ))
+          ) : (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              className="hero-bg-photo"
+              src={cdn(BG_NIGHT)}
+              alt="Zurich Graphics Real Estate Branding"
+              fetchPriority="high"
+              style={{
+                position: "absolute",
+                inset: 0,
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                objectPosition: "left center",
+              }}
+            />
+          )}
         </motion.div>
       </div>
 
       {/* ── MODEL — anchored bottom, straddles the 33% boundary ── */}
-      <div style={{
-        position: 'absolute',
-        bottom: 0,
-        left: 'calc(33% - 14vw)',
-        width: 'clamp(200px, 28vw, 460px)',
-        zIndex: 5,
-        pointerEvents: 'none',
-      }}>
-        <motion.div style={{ scale: imgScale, transformOrigin: 'bottom center' }}>
+      <div
+        style={{
+          position: "absolute",
+          bottom: 0,
+          left: "calc(33% - 14vw)",
+          width: "clamp(200px, 28vw, 460px)",
+          zIndex: 5,
+          pointerEvents: "none",
+        }}
+      >
+        <motion.div
+          style={{ scale: imgScale, transformOrigin: "bottom center" }}
+        >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           {/* <img
             src={cdn(DECOR_MODEL)}
@@ -93,25 +155,28 @@ export default function Hero() {
           in the server-rendered HTML for crawlers; framer-motion already
           renders the `initial` state on the server and animates to
           `animate` once it hydrates, so the reveal looks identical. */}
-      <div className="hero-headline" style={{
-        position: 'absolute',
-        top: '2.4rem',
-        left: '4rem',
-        zIndex: 6,
-        maxWidth: 'calc(33% - 4rem)',
-      }}>
+      <div
+        className="hero-headline"
+        style={{
+          position: "absolute",
+          top: "2.4rem",
+          left: "4rem",
+          zIndex: 6,
+          maxWidth: "calc(100% - var(--hero-img-w) - 4rem)",
+        }}
+      >
         <motion.h1
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: [0.7, 0, 0.3, 1], delay: 0.3 }}
           style={{
-            color: '#fff',
-            fontSize: '3.6rem',
+            color: "#fff",
+            fontSize: "3.6rem",
             fontWeight: 600,
-            lineHeight: '38px',
-            letterSpacing: '0.02em',
-            marginBottom: '2.8rem',
-            whiteSpace: 'pre-line',
+            lineHeight: "38px",
+            letterSpacing: "0.02em",
+            marginBottom: "2.8rem",
+            whiteSpace: "pre-line",
           }}
         >
           India&apos;s Premier Agency For Powerful Real Estate Brands
@@ -123,7 +188,12 @@ export default function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: [0.7, 0, 0.3, 1], delay: 0.45 }}
-          style={{ display: 'block', width: 'clamp(120px, 15vw, 220px)', height: 'auto', marginBottom: '2.4rem' }}
+          style={{
+            display: "block",
+            width: "clamp(120px, 15vw, 220px)",
+            height: "auto",
+            marginBottom: "2.4rem",
+          }}
         />
 
         <motion.a
@@ -132,29 +202,34 @@ export default function Hero() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.9, ease: [0.7, 0, 0.3, 1], delay: 0.6 }}
           aria-label="Scroll Down"
-          style={{ display: 'inline-block', lineHeight: 0, color: '#fff' }}
+          style={{ display: "inline-block", lineHeight: 0, color: "#fff" }}
         >
-          <SvgIcon id="long-arrow-down" width={14} height={41} style={{ color: '#fff' }} />
+          <SvgIcon
+            id="long-arrow-down"
+            width={14}
+            height={41}
+            style={{ color: "#fff" }}
+          />
         </motion.a>
       </div>
 
       {/* ── GIANT BRAND NAME at bottom ── */}
       <motion.div
         style={{
-          position: 'absolute',
+          position: "absolute",
           bottom: 0,
           left: 0,
           right: 0,
           zIndex: 6,
           y: logoY,
-          pointerEvents: 'none',
-          overflow: 'hidden',
+          pointerEvents: "none",
+          overflow: "hidden",
         }}
       >
         {mounted && (
           <motion.div
-            initial={{ y: '100%' }}
-            animate={{ y: '0%' }}
+            initial={{ y: "100%" }}
+            animate={{ y: "0%" }}
             transition={{ duration: 1.3, ease: [0.7, 0, 0.3, 1], delay: 0.1 }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -163,10 +238,10 @@ export default function Hero() {
               src={cdn("/images/zurich-text.svg")}
               alt="Zurich"
               style={{
-                display: 'block',
-                width: 'clamp(280px, 55vw, 850px)',
-                height: 'auto',
-                paddingLeft: '2.4rem',
+                display: "block",
+                width: "clamp(280px, 55vw, 850px)",
+                height: "auto",
+                paddingLeft: "2.4rem",
                 margin: 0,
               }}
             />
@@ -176,11 +251,15 @@ export default function Hero() {
 
       <style>{`
         @media (max-width: 640px) {
+          .hero-section {
+            height: 100svh !important;
+          }
           .hero-left-strip {
             display: none !important;
           }
           .hero-image-wrap {
             left: 0 !important;
+            width: 100% !important;
           }
           .hero-bg-photo {
             object-fit: contain !important;
@@ -204,5 +283,5 @@ export default function Hero() {
         }
       `}</style>
     </section>
-  )
+  );
 }
