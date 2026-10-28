@@ -45,7 +45,7 @@ export default function Hero() {
     <section
       ref={ref}
       id="top"
-      className="hero-section"
+      className={FESTIVE_BANNER ? "hero-section hero-festive" : "hero-section"}
       style={{
         position: "relative",
         width: "100%",
@@ -265,6 +265,19 @@ export default function Hero() {
             object-fit: contain !important;
             object-position: center center !important;
             background: #000;
+          }
+          /* festive 4:3 banner: full-width box at the bottom, above the wordmark, shown uncropped */
+          .hero-festive {
+            min-height: 780px !important;
+          }
+          .hero-festive .hero-image-wrap {
+            top: auto !important;
+            bottom: 7rem !important;
+            height: auto !important;
+            aspect-ratio: 4 / 3;
+          }
+          .hero-festive .hero-bg-photo {
+            object-fit: cover !important;
           }
           .hero-headline {
             top: 7rem !important;
