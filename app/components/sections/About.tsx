@@ -267,12 +267,23 @@ export default function About({ videoUrl, videoPoster }: AboutProps) {
                 <SvgIcon id="close" width={24} height={24} />
               </button>
               <div style={{ width: '100%', aspectRatio: '16/9' }}>
-                <iframe
-                  src="https://player.vimeo.com/video/1185877284?autoplay=1"
-                  allow="autoplay; fullscreen"
-                  allowFullScreen
-                  style={{ width: '100%', height: '100%', border: 'none' }}
-                />
+                {videoUrl ? (
+                  <video
+                    src={videoUrl}
+                    poster={videoPoster}
+                    controls
+                    autoPlay
+                    playsInline
+                    style={{ width: '100%', height: '100%', background: '#000', objectFit: 'contain' }}
+                  />
+                ) : (
+                  <iframe
+                    src="https://player.vimeo.com/video/1185877284?autoplay=1"
+                    allow="autoplay; fullscreen"
+                    allowFullScreen
+                    style={{ width: '100%', height: '100%', border: 'none' }}
+                  />
+                )}
               </div>
             </motion.div>
           </motion.div>
